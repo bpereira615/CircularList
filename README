@@ -1,0 +1,15 @@
+Benmin Hoertnagl-Pereira
+bhoertn1
+631-488-7197 
+bhoertn1@jhu.edu
+
+600.226.02 CS226 Data Structures
+Project 1 - CircularList
+
+Files:
+List.java - a list interface, to be implemented using circular list
+CList.java - a circular, doubly linked list implementation
+
+NOTE:
+List.java interface taken from assignment page, coures website
+CList.java adopted from DDList.java implementation on course site
