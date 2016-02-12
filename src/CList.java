@@ -89,12 +89,14 @@ public class CList<T> implements List<T> {
     		// also set next to current b/c only one node
     		this.next = this.head;
     		this.size++;
-    		this.curr = this.head; 
+    		this.curr = this.head;
+    		return true;
     	} else {
     		Node n = new Node(t, this.curr, this.curr.next);
     		n.prev.next = n; // connect left neighbor
     		n.next.prev = n; // connect right neighbor
     		this.size++;
+    		this.curr = n; // move cursor
     		return true;
     	}
     }
@@ -108,27 +110,42 @@ public class CList<T> implements List<T> {
      * @return true if successfully appended, false otherwise
      */
     public boolean append(T t) {
-        Node temp = this.curr; // hold onto original position
-        this.curr = this.head.prev; // move to the last node (preceding head)
-        this.insert(t); // code reuse!
-        this.curr = temp; // restore cursor to original position
-        return true;
+    	if (this.size == 0) {
+    		this.insert(t); // already built zero case into insert
+    		this.size++;
+    		return true;
+    	} else {
+    		Node temp = this.curr; // hold onto original position
+    		this.curr = this.head.prev; // move to the last node (preceding head)
+    		this.insert(t); // code reuse!
+    		this.curr = temp; // restore cursor to original position
+    		this.size++;
+    		return true;
+    	}
     }
 
     /**
-     * Remove and return the current element (one to right of cursor).
+     * Remove current item and return it
+     * Set cursor to next item (one to right of removed).
      * 
      * @return the value of the element removed, null if list is empty
      */
     public T remove() {
-        if (this.curr.next == this.tail) {
-            return null;
-        }
-        T val = this.curr.next.data;
-        this.curr.next = this.curr.next.next; // bypass node being deleted
-        this.curr.next.prev = this.curr; // bypass it in other direction
-        this.size--;
-        return val;
+    	// do we have a tail?
+    	// f this
+        // if (this.curr.next == this.tail) {
+        //    return null;
+        //}
+    	if (this.size == 0){
+    		return null;
+    	} else {
+	        T val = this.curr.data;
+	        this.curr.next.prev = this.curr.prev; // bypass node being deleted
+	        this.curr.prev.next = this.curr.next; // bypass it in other direction
+	        this.size--;
+	        this.curr = this.curr.next; // set cursor to next node
+	        return val;
+    	}
     }
 
     /**
