@@ -81,11 +81,22 @@ public class CList<T> implements List<T> {
      * @return true if successfully inserted, false otherwise
      */
     public boolean insert(T t) {
-        Node n = new Node(t, this.curr, this.curr.next);
-        n.prev.next = n; // connect left neighbor
-        n.next.prev = n; // connect right neighbor
-        this.size++;
-        return true;
+    	if (this.size == 0) {
+    		// need to make an initial node
+    		this.head = new Node(t, null, null);
+    		// set prev to current node, aka head
+    		this.prev = this.head;
+    		// also set next to current b/c only one node
+    		this.next = this.head;
+    		this.size++;
+    		this.curr = this.head; 
+    	} else {
+    		Node n = new Node(t, this.curr, this.curr.next);
+    		n.prev.next = n; // connect left neighbor
+    		n.next.prev = n; // connect right neighbor
+    		this.size++;
+    		return true;
+    	}
     }
 
     /**
