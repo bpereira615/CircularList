@@ -14,7 +14,11 @@ Project 1 - CircularList
 Files:
 List.java - a list interface, to be implemented using circular list
 CList.java - a circular, doubly linked list implementation
+CookingItemInterface - 
+CookingItem - 
+CookingStationInterface - 
+CookingStation - 
 
 NOTE:
-List.java interface taken from assignment page, coures website
+List.java, CookingItemInterface.java, CookingStationInterface.java interface taken from assignment page, course site
 CList.java adopted from DDList.java implementation on course site
