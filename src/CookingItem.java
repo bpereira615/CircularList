@@ -8,23 +8,54 @@
  *******************************************************************/
 
 public class CookingItem implements CookingItemInterface {
+    /**
+     * Name of the cooking item.
+     */
+    private String name;
+
+
+    /**
+     * Cooking time of the item.
+     */
+    private int time;
+
+    /**
+     * Last time checked for given item.
+     */
+    private int lastChecked;
+
+    /**
+     * Penalty per minute for overdone and underdone.
+     */
+    private int penaltyPerMin;
+
+
+    /**
+     * Constructor for the CookingItem class
+     *
+     * @param n name of the item
+     * @param t time needed to cook
+     *
+    public CookingItem(String n, int t, ) {
+
+    }
 
     /**
      * Implements a simulation of one minute of time for this item by
      * decrementing cooking time by one minute.
      */
     public void tick() {
-
+        this.lastChecked++;
     }
 
     /**
      * Get the time remaining for cooking this dish.
+     * Negative time remaining indicates over-cooked.
      * 
      * @return the time in minutes
      */
     public int timeRemaining() {
-        // TODO: dummy return
-        return 0;
+        return this.time - this.lastChecked;
     }
 
     /**
@@ -33,7 +64,10 @@ public class CookingItem implements CookingItemInterface {
      * @return the penalty
      */
     public int penalty() {
-        // TODO: dummy return
-        return 0;
+        // TODO: Math.abs import
+        // TODO: this.timeRemaining() or without this
+        return Math.abs(this.timeRemaining()) * this.penaltyPerMin;
     }
+
+   
 }

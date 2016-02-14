@@ -52,6 +52,8 @@ public class CList<T> implements List<T> {
 
     /** Head node of list. */
     private Node head;
+    /** Tail node of list. */
+    private Node tail;
     /** Number of actual data nodes in list. */
     private int size;
     /** Current node (think of as a cursor between nodes). */
@@ -71,6 +73,7 @@ public class CList<T> implements List<T> {
         this.size = 0;
         this.head = null; // new Node(null, null, null);
         this.curr = null; // this.head; // because insert will insert after curr
+        this.tail = null; //TODO: is tail required?
     }
 
     /**
@@ -89,6 +92,9 @@ public class CList<T> implements List<T> {
             this.head.prev = this.head;
             // also set next to current b/c only one node
             this.head.next = this.head;
+
+            //TODO: use tail node as well?
+            
             this.size++;
             this.curr = this.head;
             return true;

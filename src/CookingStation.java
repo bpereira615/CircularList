@@ -7,7 +7,7 @@
  * NOTE: this file was taken from the assignment page
  *******************************************************************/
 
-public class CookingStation implements CookingStationInterface {
+public class CookingStation extends CList implements CookingStationInterface {
 
     /**
      * Put a new dish at the end of the staStion.
