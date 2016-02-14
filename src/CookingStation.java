@@ -8,6 +8,15 @@
  *******************************************************************/
 
 public class CookingStation extends CList implements CookingStationInterface {
+    /**
+     * Name of the cooking station.
+     */
+    private String name;
+
+    /**
+     * Circular list of items at the station.
+     */
+    private CList<CookingItem> items;
 
     /**
      * Put a new dish at the end of the staStion.
@@ -16,14 +25,14 @@ public class CookingStation extends CList implements CookingStationInterface {
      *            the dish to add
      */
     public void addItem(CookingItem it) {
-
+        items.insert(it);
     }
 
     /**
      * Simulate one minute time passing for this station.
      */
     public void tick() {
-
+        //TODO: iterate through list and tick all of the items
     }
 
     /**
@@ -38,7 +47,24 @@ public class CookingStation extends CList implements CookingStationInterface {
      * @return the item if you decide to remove it, or null otherwise
      */
     public CookingItem tend(int removeThreshold, int penaltyThreshold) {
+        //TODO: thresholds??
         return null;
+    }
+
+    /**
+     * Prints the contents of the list.
+     *
+     * @return contents of list as a String
+     */
+    public String toString() {
+        String str = "[ ";
+
+        while (!(this.items.isAtEnd()) {
+            str += this.items.getValue().toString() + " ";
+        }
+        str += "]";
+        //TODO: check
+        return str;
     }
 
 }

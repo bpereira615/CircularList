@@ -25,9 +25,14 @@ public class CookingItem implements CookingItemInterface {
     private int lastChecked;
 
     /**
-     * Penalty per minute for overdone and underdone.
+     * Penalty per minute for underdone.
      */
-    private int penaltyPerMin;
+    private int underdonePenalty;
+
+    /**
+     * Penalty per minute for overdone.
+     */
+    private int overdonePenalty;
 
 
     /**
@@ -35,9 +40,14 @@ public class CookingItem implements CookingItemInterface {
      *
      * @param n name of the item
      * @param t time needed to cook
-     *
-    public CookingItem(String n, int t, ) {
-
+     * @param under penalty for undercooked
+     * @param over penalty or overcooked
+     */
+    public CookingItem(String n, int t, int under, int over) {
+        this.name = n;
+        this.time = t;
+        this.underdonePenalty = under;
+        this.overdonePenalty = over;
     }
 
     /**
@@ -66,8 +76,23 @@ public class CookingItem implements CookingItemInterface {
     public int penalty() {
         // TODO: Math.abs import
         // TODO: this.timeRemaining() or without this
-        return Math.abs(this.timeRemaining()) * this.penaltyPerMin;
+        int remain = this.timeRemaining();
+        if(remain > 0) {
+            return remain * this.underdonePenalty;
+        } else {
+            return Math.abs(remain) * this.overdonePenalty;
+        }
     }
-
-   
+    
+    /**
+     * Prints the name of the item and its cooking time.
+     *
+     * @return contents of list as a String
+     */
+    public String toString() {
+        String str = "(";
+        str += this.name " " + this.timeRemaining() + ")";
+        //TODO: check
+        return str;
+    }
 }
