@@ -312,13 +312,4 @@ public class CList<T> implements List<T> {
         return str;
     }
 
-    /**
-     * Gets the size of the list.
-     *
-     * @return size of list
-     */
-    public int getSize() {
-        return this.size;
-    }
-
 }
