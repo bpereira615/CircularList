@@ -68,6 +68,7 @@ public class CList<T> implements List<T> {
 
     /**
      * Remove all contents from the list, so it is once again empty.
+     * Cursor should be at position 0.
      */
     public void clear() {
         this.size = 0;
@@ -77,11 +78,13 @@ public class CList<T> implements List<T> {
     }
 
     /**
-     * Insert a value at (after) the current location. The client must ensure
-     * that the list's capacity is not exceeded.
+     * Insert a value at the current position. The cursor should
+     * remain at that position, meaning that the new value is the
+     * current one (would be returned by getValue).  The client must
+     * ensure that the list's capacity is not exceeded.
+     *
+     * @param t the value to insert
      * 
-     * @param t
-     *            the value to insert
      * @return true if successfully inserted, false otherwise
      */
     public boolean insert(T t) {
@@ -94,6 +97,7 @@ public class CList<T> implements List<T> {
             this.head.next = this.head;
 
             //TODO: use tail node as well?
+            //TODO: retunr false cases?
             
             this.size++;
             this.curr = this.head;
@@ -109,14 +113,15 @@ public class CList<T> implements List<T> {
     }
 
     /**
-     * Append a value at the end of the list. The client must ensure that the
-     * list's capacity is not exceeded.
-     * 
-     * @param t
-     *            the value to append
+     * Append a value at the end of the list. Cursor does not move.
+     * The client must ensure that the list's capacity is not exceeded.
+     *
+     * @param t the value to append
+     *
      * @return true if successfully appended, false otherwise
      */
     public boolean append(T t) {
+        //TODO: return false case?
         if (this.size == 0) {
             this.insert(t); // already built zero case into insert
             this.size++;
@@ -133,10 +138,12 @@ public class CList<T> implements List<T> {
     }
 
     /**
-     * Remove current item and return it Set cursor to next item (one to right
-     * of removed).
-     * 
-     * @return the value of the element removed, null if list is empty
+     * Remove and return the current element. Cursor does not move,
+     * unless the last element was removed.  In that case the cursor
+     * should be reset to the beginning of the list.
+     *
+     * @return the value of the element removed, or null if there was
+     * no current element.
      */
     public T remove() {
         // do we have a tail?
@@ -149,22 +156,26 @@ public class CList<T> implements List<T> {
         } else {
             T val = this.curr.data;
             this.curr.next.prev = this.curr.prev; // bypass node being deleted
-            this.curr.prev.next = this.curr.next; // bypass it in other
-                                                  // direction
+            this.curr.prev.next = this.curr.next; // bypass it in other direction
             this.size--;
-            this.curr = this.curr.next; // set cursor to next node
+            if(this.curr == this.head.tail) {
+                this.curr = this.head; // set cursor to head if curr last element
+            } else {
+                this.curr = this.curr.next; // set cursor to next node
+            }
             return val;
         }
     }
 
     /**
-     * Return the current element.
-     * 
-     * @return the value of the current element, null if none
+     * Return the data in the current element.
+     *
+     * @return the value of the current element, null if there isn't one.
      */
     public T getValue() {
         if (this.size == 0) {
             // TODO: error statement to be added
+            //TODO: is this even needed? May just return null
             return null;
         }
         return this.curr.data;
@@ -219,8 +230,9 @@ public class CList<T> implements List<T> {
     }
 
     /**
-     * Return the position of the current element.
-     * 
+     * Return the position of the current element. (1st element is at
+     * position 0, 2nd at position 1, etc.)
+     *
      * @return the current position in the list
      */
     public int currPos() {
@@ -242,9 +254,10 @@ public class CList<T> implements List<T> {
 
     /**
      * Set the current position, indexing from 0.
-     * 
-     * @param pos
-     *            the value to set the position to
+     *
+     * @param pos the value to set the position to, 0 through
+     * length()-1 inclusive are valid values
+     *
      * @return true if successfully changed position, false otherwise
      */
     public boolean moveToPos(int pos) {
@@ -261,12 +274,14 @@ public class CList<T> implements List<T> {
     }
 
     /**
-     * Return true if current position is at end of the list.
-     * 
-     * @return true if the current position is the end of the list
+     * Return true if current position is at the end of the list,
+     * meaning at the last node.
+     *
+     * @return true if the current position is the last node, false
+     * otherwise
      */
     public boolean isAtEnd() {
         return (this.curr == this.head.prev);
     }
-    /* ---------- METHODS BELOW THIS LINE ARE NOT IMPLEMENTED ------------ */
+
 }
