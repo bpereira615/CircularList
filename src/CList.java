@@ -121,16 +121,13 @@ public class CList<T> implements List<T> {
     public boolean append(T t) {
         //TODO: return false case?
         if (this.size == 0) {
-            this.insert(t); // already built zero case into insert
-            this.size++;
-            return true;
+            return this.insert(t); // already built zero case into insert
         } else {
             Node temp = this.curr; // hold onto original position
-            this.curr = this.head.prev; // move to the last node (preceding
-                                        // head)
+            moveToEnd(); //code reuse
+            prev();
             this.insert(t); // code reuse!
             this.curr = temp; // restore cursor to original position
-            this.size++;
             return true;
         }
     }
@@ -292,6 +289,9 @@ public class CList<T> implements List<T> {
     public String toString() {
         //TODO: check
 
+        if(this.size == 0) {
+            return "ERROR: List is empty!";
+        }
         String str = "[ ";
 
         Node temp = this.curr;  // temporarily save position of curr
@@ -301,11 +301,20 @@ public class CList<T> implements List<T> {
             str += this.curr.data.toString() + " ";
             this.next();
         }
-        str += this.curr.data.toString() + "]";
+        str += this.curr.data.toString() + " ]";
 
         this.curr = temp;   // move cursor back to original position
 
         return str;
+    }
+
+    /**
+     * Gets the size of the list.
+     *
+     * @return size of list
+     */
+    public int getSize() {
+        return this.size;
     }
 
 }
