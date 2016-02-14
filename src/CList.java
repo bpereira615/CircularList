@@ -153,8 +153,12 @@ public class CList<T> implements List<T> {
             this.curr.next.prev = this.curr.prev; // bypass node being deleted
             this.curr.prev.next = this.curr.next; // bypass it in other direction
             this.size--;
+
             if(this.curr == this.head.prev) {
                 this.curr = this.head; // set cursor to head if curr last element
+            } else if (this.curr == this.head){
+                this.head = this.curr.next; //corner case for removing head
+                this.curr = this.head;
             } else {
                 this.curr = this.curr.next; // set cursor to next node
             }

@@ -12,8 +12,10 @@ public class Driver {
 		list.insert(3);
 		list.insert(4);
 		System.out.println(list);
-		list.prev();
-		System.out.println(list.getValue());
+		list.moveToStart();
+		list.remove();
+		System.out.println(list);
+		//System.out.println(list.getValue());
 		list.remove();
 		System.out.println(list);
 
