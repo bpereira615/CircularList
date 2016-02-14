@@ -91,7 +91,7 @@ public class CookingItem implements CookingItemInterface {
      */
     public String toString() {
         String str = "(";
-        str += this.name " " + this.timeRemaining() + ")";
+        str += this.name + " " + this.timeRemaining() + ")";
         //TODO: check
         return str;
     }

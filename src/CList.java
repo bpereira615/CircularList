@@ -282,4 +282,30 @@ public class CList<T> implements List<T> {
         return (this.curr == this.head.prev);
     }
 
+
+
+    /**
+     * Prints the contents of the list.
+     *
+     * @return contents of list as a String
+     */
+    public String toString() {
+        //TODO: check
+
+        String str = "[ ";
+
+        Node temp = this.curr;  // temporarily save position of curr
+        this.moveToStart();
+
+        while (!(this.isAtEnd())) {
+            str += this.curr.data.toString() + " ";
+            this.next();
+        }
+        str += this.curr.data.toString() + "]";
+
+        this.curr = temp;   // move cursor back to original position
+
+        return str;
+    }
+
 }

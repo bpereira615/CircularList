@@ -33,6 +33,10 @@ public class CookingStation extends CList implements CookingStationInterface {
      */
     public void tick() {
         //TODO: iterate through list and tick all of the items
+        while(!(this.items.isAtEnd())){
+            this.items.getValue().tick();
+            this.items.next();
+        }
     }
 
     /**
@@ -51,20 +55,5 @@ public class CookingStation extends CList implements CookingStationInterface {
         return null;
     }
 
-    /**
-     * Prints the contents of the list.
-     *
-     * @return contents of list as a String
-     */
-    public String toString() {
-        String str = "[ ";
-
-        while (!(this.items.isAtEnd()) {
-            str += this.items.getValue().toString() + " ";
-        }
-        str += "]";
-        //TODO: check
-        return str;
-    }
-
+    
 }
