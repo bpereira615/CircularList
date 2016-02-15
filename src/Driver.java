@@ -3,7 +3,59 @@ public class Driver {
 	public static void main(String[] args) {
 		CList<Integer> list = new CList<Integer>();
 
-		//System.out.println(list);	//empty list check
+
+
+
+
+
+
+
+
+		list.insert(1);
+		System.out.println(list);
+		list.moveToStart();		
+		list.insert(2);
+		System.out.println(list);
+		list.moveToStart();
+		System.out.println(list.getValue());
+
+		
+		list.insert(3);
+		System.out.println(list);
+		
+		list.moveToStart();
+		list.insert(4);
+		System.out.println(list);
+		list.moveToStart();
+		list.insert(5);
+		System.out.println(list);
+		
+		//list.moveToPos(2);
+		
+		
+		//System.out.println(list.getValue());
+		//list.insert(5);
+		//System.out.println(list);
+		//System.out.println(list.getValue());
+
+
+
+		
+
+
+
+/*	
+		//Piazza example
+		list.insert(1);
+		list.insert(2);
+		list.insert(3);
+		list.insert(4);
+		System.out.println(list);
+		list.moveToPos(2);
+		System.out.println(list.getValue());
+		list.remove();
+		System.out.println(list);
+		System.out.println(list.getValue());
 
 		//insert(), length(), clear(), currentPos()
 		for(int i = 0; i < 20; i++) {
@@ -41,12 +93,6 @@ public class Driver {
 		System.out.print(list.getValue() + " " + list.currPos());
 
 
-
-
-
-/*	
-		
-		
 		list.clear();
 		System.out.println(list);
 

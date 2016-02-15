@@ -100,7 +100,41 @@ public class CList<T> implements List<T> {
             this.size++;
             this.curr = this.head;
             return true;
-        } else {
+
+
+        } else if (this.currPos() == 0) { // inserting at head, need to update
+            Node temp = this.curr;
+            this.moveToEnd();   
+
+            //delete me
+            //System.out.println("temp: " + temp.data + "curr: " + curr.data);
+            //
+
+
+            Node n = new Node(t, this.curr, temp);
+            //System.out.println("next: " + n.next.data + "prev: " + n.prev.data);
+            n.prev.next = n;
+            n.next.prev = n;
+
+
+            this.size++;
+            this.curr = n;
+            this.head = n;
+            return true;
+
+
+        } /*else if (this.currPos() == 0 && this.size != 1) { // inserting at head, need to update
+            Node temp = this.curr;
+            this.moveToEnd();   
+            Node n = new Node(t, temp, this.curr);
+            n.prev.next = n;
+            n.next.prev = n;
+            this.size++;
+            this.curr = n;
+            return true;
+        } */else {
+
+
             Node n = new Node(t, this.curr, this.curr.next);
             n.prev.next = n; // connect left neighbor
             n.next.prev = n; // connect right neighbor
