@@ -70,8 +70,8 @@ public class CList<T> implements List<T> {
      */
     public void clear() {
         this.size = 0;
-        this.head = null; // new Node(null, null, null);
-        this.curr = null; // this.head; // because insert will insert after curr
+        this.head = new Node(null, null, null); // new Node(null, null, null);
+        this.curr = this.head; // this.head; // because insert will insert after curr
         //TODO: is tail required?
     }
 
@@ -259,7 +259,7 @@ public class CList<T> implements List<T> {
         // iterate through list until current node matches original current node
         while (this.curr != temp) {
             position++;
-            this.curr = this.curr.next;
+            this.next();
         }
 
         return position;
@@ -274,8 +274,10 @@ public class CList<T> implements List<T> {
      * @return true if successfully changed position, false otherwise
      */
     public boolean moveToPos(int pos) {
-        // TODO: return false case?
-
+        //return false if position is less than 0 or greather than list length - 1        
+        if(pos < 0 || pos > (this.size - 1)) {
+            return false;
+        }
         this.moveToStart(); // code reuse!
 
         for (int i = 0; i < pos; i++) {
