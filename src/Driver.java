@@ -4,39 +4,28 @@ public class Driver {
 		CList<Integer> list = new CList<Integer>();
 
 
-
-
-
-
-
-
-
+		//Piazza example
+		list.insert(4);
+		list.insert(3);
+		list.insert(2);
 		list.insert(1);
 		System.out.println(list);
-		list.moveToStart();		
-		list.insert(2);
-		System.out.println(list);
-		list.moveToStart();
+		list.moveToPos(2);
 		System.out.println(list.getValue());
-
-		
-		list.insert(3);
-		System.out.println(list);
-		
-		list.moveToStart();
-		list.insert(4);
-		System.out.println(list);
-		list.moveToStart();
 		list.insert(5);
 		System.out.println(list);
+		System.out.println(list.getValue());
+
+
+
 		
-		//list.moveToPos(2);
+
+
+
+
+
 		
-		
-		//System.out.println(list.getValue());
-		//list.insert(5);
-		//System.out.println(list);
-		//System.out.println(list.getValue());
+
 
 
 
@@ -45,26 +34,29 @@ public class Driver {
 
 
 /*	
-		//Piazza example
-		list.insert(1);
-		list.insert(2);
-		list.insert(3);
-		list.insert(4);
-		System.out.println(list);
-		list.moveToPos(2);
-		System.out.println(list.getValue());
-		list.remove();
-		System.out.println(list);
-		System.out.println(list.getValue());
-
-		//insert(), length(), clear(), currentPos()
+//insert(), length(), clear(), currentPos()
 		for(int i = 0; i < 20; i++) {
 			list.insert(i);
 			System.out.println(list.length() + " " + list.currPos());
 		}
 		System.out.println(list);
 
-	
+	//insert(), head node case
+		list.insert(1);
+		System.out.println(list);
+		list.moveToStart();		
+		list.insert(2);
+		System.out.println(list);
+		list.moveToStart();
+		System.out.println(list.getValue());		
+		list.insert(3);
+		System.out.println(list);	
+		list.moveToStart();
+		list.insert(4);
+		System.out.println(list);
+		list.moveToStart();
+		list.insert(5);
+		System.out.println(list);
 
 		//next(), prev(), moveToEnd(), moveToStart(), isAtEnd()
 		list.moveToStart();

@@ -102,17 +102,11 @@ public class CList<T> implements List<T> {
             return true;
 
 
-        } else if (this.currPos() == 0) { // inserting at head, need to update
+         /*else if (this.currPos() == 0) { // inserting at head, need to update this.head
             Node temp = this.curr;
             this.moveToEnd();   
 
-            //delete me
-            //System.out.println("temp: " + temp.data + "curr: " + curr.data);
-            //
-
-
             Node n = new Node(t, this.curr, temp);
-            //System.out.println("next: " + n.next.data + "prev: " + n.prev.data);
             n.prev.next = n;
             n.next.prev = n;
 
@@ -120,28 +114,36 @@ public class CList<T> implements List<T> {
             this.size++;
             this.curr = n;
             this.head = n;
-            return true;
+            return true;*/
 
 
-        } /*else if (this.currPos() == 0 && this.size != 1) { // inserting at head, need to update
-            Node temp = this.curr;
-            this.moveToEnd();   
-            Node n = new Node(t, temp, this.curr);
+        } else {
+            int pos = this.currPos();
+            Node next = this.curr;
+            this.circularPrev();   
+
+            Node n = new Node(t, this.curr, next);
             n.prev.next = n;
             n.next.prev = n;
+
+
             this.size++;
             this.curr = n;
+            if (pos == 0) {
+                this.head = n;
+            }
             return true;
-        } */else {
+        }
 
-
+            /*
             Node n = new Node(t, this.curr, this.curr.next);
             n.prev.next = n; // connect left neighbor
             n.next.prev = n; // connect right neighbor
             this.size++;
             this.curr = n; // move cursor
             return true;
-        }
+            */
+        
     }
 
     /**
@@ -346,4 +348,17 @@ public class CList<T> implements List<T> {
         return str;
     }
 
+    /**
+     * Moves the cursor to previous node, regardless of if at head or not
+     */
+    private void circularPrev() {
+        this.curr = this.curr.prev;
+    }
+
+    /**
+     * Moves the cursor to next node, regardless of if at tail or not
+     */
+    private void circularNext() {
+        this.curr = this.curr.next;
+    }
 }
