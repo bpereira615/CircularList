@@ -19,6 +19,15 @@ public class CookingStation extends CList implements CookingStationInterface {
     private CList<CookingItem> items;
 
     /**
+     * Constructor for CookingStation.
+     *
+     * @param n name of station
+     */
+    public CookingStation(String n) {
+        this.name = n;
+    }
+
+    /**
      * Put a new dish at the end of the staStion.
      * 
      * @param it
@@ -55,5 +64,21 @@ public class CookingStation extends CList implements CookingStationInterface {
         return null;
     }
 
+
+    /**
+     * Prints a list of the items in the station.
+     *
+     * @return the string form of item list
+     */
+    public String toString() {
+        String str = this.name + "[ ";
+        while(!items.isAtEnd()) {
+            str += items.getValue().toString() + " ";
+            items.next();
+        }
+        str += "]";
+
+        return str;
+    }
     
 }
