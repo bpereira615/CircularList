@@ -69,7 +69,10 @@ public class CList<T> implements List<T> {
      * Cursor should be at position 0.
      */
     public void clear() {
+        this.moveToStart(); // need cursor at 0 position
+        // trying different sizes for null case, 0 doesn't work
         this.size = 0;
+        //this.currPos = 0;
         this.head = null; // new Node(null, null, null); // new Node(null, null, null);
         this.curr = this.head; // this.head; // because insert will insert after curr
         //TODO: is tail required?
@@ -86,6 +89,7 @@ public class CList<T> implements List<T> {
      * @return true if successfully inserted, false otherwise
      */
     public boolean insert(T t) {
+        //TODO: adjust this.size when we figure out null case
         if (this.size == 0) {
             // need to make an initial node
             this.head = new Node(t, null, null);
@@ -97,7 +101,7 @@ public class CList<T> implements List<T> {
             //TODO: use tail node as well?
             //TODO: retunr false cases?
             
-            this.size++;
+            this.size = 1;
             this.curr = this.head;
             return true;
 
@@ -137,7 +141,7 @@ public class CList<T> implements List<T> {
         } else {
             Node temp = this.curr; // hold onto original position
             moveToEnd(); //code reuse
-            prev();
+           // prev();
             Node n = new Node(t, this.curr, this.head);
             n.prev.next = n;
             n.next.prev = n;
