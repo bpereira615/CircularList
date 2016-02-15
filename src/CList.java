@@ -102,21 +102,6 @@ public class CList<T> implements List<T> {
             return true;
 
 
-         /*else if (this.currPos() == 0) { // inserting at head, need to update this.head
-            Node temp = this.curr;
-            this.moveToEnd();   
-
-            Node n = new Node(t, this.curr, temp);
-            n.prev.next = n;
-            n.next.prev = n;
-
-
-            this.size++;
-            this.curr = n;
-            this.head = n;
-            return true;*/
-
-
         } else {
             int pos = this.currPos();
             Node next = this.curr;
@@ -135,15 +120,6 @@ public class CList<T> implements List<T> {
             return true;
         }
 
-            /*
-            Node n = new Node(t, this.curr, this.curr.next);
-            n.prev.next = n; // connect left neighbor
-            n.next.prev = n; // connect right neighbor
-            this.size++;
-            this.curr = n; // move cursor
-            return true;
-            */
-        
     }
 
     /**
@@ -162,7 +138,9 @@ public class CList<T> implements List<T> {
             Node temp = this.curr; // hold onto original position
             moveToEnd(); //code reuse
             prev();
-            this.insert(t); // code reuse!
+            Node n = new Node(t, this.curr, this.head);
+            n.prev.next = n;
+            n.next.prev = n;
             this.curr = temp; // restore cursor to original position
             return true;
         }

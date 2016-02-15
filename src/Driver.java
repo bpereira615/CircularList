@@ -14,8 +14,10 @@ public class Driver {
 		System.out.println(list.getValue());
 		list.insert(5);
 		System.out.println(list);
-		System.out.println(list.getValue());
-
+		list.append(6);
+		System.out.println(list);
+		list.insert(6);
+		System.out.println(list);
 
 
 		
