@@ -22,7 +22,8 @@ public class CookingItem implements CookingItemInterface {
     /**
      * Last time checked for given item.
      */
-    private int lastChecked;
+    //private int lastChecked;
+    //may not need to be used
 
     /**
      * Penalty per minute for underdone.
@@ -55,7 +56,7 @@ public class CookingItem implements CookingItemInterface {
      * decrementing cooking time by one minute.
      */
     public void tick() {
-        this.lastChecked++;
+        this.time--;
     }
 
     /**
@@ -65,7 +66,7 @@ public class CookingItem implements CookingItemInterface {
      * @return the time in minutes
      */
     public int timeRemaining() {
-        return this.time - this.lastChecked;
+        return this.time;
     }
 
     /**
