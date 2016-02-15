@@ -70,7 +70,7 @@ public class CList<T> implements List<T> {
      */
     public void clear() {
         this.size = 0;
-        this.head = new Node(null, null, null); // new Node(null, null, null);
+        this.head = null; // new Node(null, null, null); // new Node(null, null, null);
         this.curr = this.head; // this.head; // because insert will insert after curr
         //TODO: is tail required?
     }
