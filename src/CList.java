@@ -146,6 +146,7 @@ public class CList<T> implements List<T> {
             n.prev.next = n;
             n.next.prev = n;
             this.curr = temp; // restore cursor to original position
+            this.size++;
             return true;
         }
     }
