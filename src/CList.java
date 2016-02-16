@@ -73,7 +73,7 @@ public class CList<T> implements List<T> {
         // trying different sizes for null case, 0 doesn't work
         this.size = 0;
         //this.currPos = 0;
-        this.head = new Node(null, null, null); // new Node(null, null, null);
+        this.head = null; // new Node(null, null, null);
         this.curr = this.head; // this.head; // because insert will insert after curr
         //TODO: is tail required?
     }
@@ -101,7 +101,7 @@ public class CList<T> implements List<T> {
             //TODO: use tail node as well?
             //TODO: retunr false cases?
             
-            this.size = 1;
+            this.size++;
             this.curr = this.head;
             return true;
 
@@ -141,7 +141,6 @@ public class CList<T> implements List<T> {
         } else {
             Node temp = this.curr; // hold onto original position
             moveToEnd(); //code reuse
-           // prev();
             Node n = new Node(t, this.curr, this.head);
             n.prev.next = n;
             n.next.prev = n;
@@ -221,9 +220,9 @@ public class CList<T> implements List<T> {
      * Set the current position to the end of the list.
      */
     public void moveToEnd() {
-        //if(this.size != 0) {
+        if(this.size != 0) {
             this.curr = this.head.prev;
-        //}
+        }
     }
 
     /**
@@ -244,7 +243,9 @@ public class CList<T> implements List<T> {
      */
     public void next() {
         // TODO: what is defined as end
-        if (this.curr != this.head.prev) {
+        if (this.size == 0) {
+            System.out.println("ERROR: Empty list!");
+        } else if (this.curr != this.head.prev) {
             this.curr = this.curr.next;
         } else {
             System.out.println("ERROR: At end of list!");
