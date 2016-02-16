@@ -1,6 +1,6 @@
 /********************************************************************
- * Benjamin Hoertnagl-Pereira bhoertn1 631-488-7197 bhoertn1@jhu.edu Lydia
- * Carroll lcarro12 240-994-8355 lcarro12@jhu.edu
+ * Benjamin Hoertnagl-Pereira bhoertn1 631-488-7197 bhoertn1@jhu.edu 
+ * Lydia Carroll lcarro12 240-994-8355 lcarro12@jhu.edu
  *
  * 600.226.02 CS226 Data Structures Project 1 - CircularList
  *
@@ -37,7 +37,7 @@ public class CookingItem implements CookingItemInterface {
 
 
     /**
-     * Constructor for the CookingItem class
+     * Constructor for the CookingItem class.
      *
      * @param n name of the item
      * @param t time needed to cook
@@ -78,7 +78,7 @@ public class CookingItem implements CookingItemInterface {
         // TODO: Math.abs import
         // TODO: this.timeRemaining() or without this
         int remain = this.timeRemaining();
-        if(remain > 0) {
+        if (remain > 0) {
             return remain * this.underdonePenalty;
         } else {
             return Math.abs(remain) * this.overdonePenalty;
