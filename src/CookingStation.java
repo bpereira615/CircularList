@@ -25,6 +25,7 @@ public class CookingStation extends CList implements CookingStationInterface {
      */
     public CookingStation(String n) {
         this.name = n;
+        this.items = new CList<CookingItem>();
     }
 
     /**
@@ -34,7 +35,7 @@ public class CookingStation extends CList implements CookingStationInterface {
      *            the dish to add
      */
     public void addItem(CookingItem it) {
-        items.insert(it);
+        items.append(it);
     }
 
     /**
@@ -65,20 +66,25 @@ public class CookingStation extends CList implements CookingStationInterface {
     }
 
 
+
     /**
      * Prints a list of the items in the station.
      *
      * @return the string form of item list
      */
+    
     public String toString() {
+        /*
         String str = this.name + "[ ";
         while(!items.isAtEnd()) {
             str += items.getValue().toString() + " ";
             items.next();
         }
-        str += "]";
-
+        str += items.getValue().toString() + "]"; //the item in the list
+        
         return str;
+        */
+        return this.name + items.toString();
     }
     
 }

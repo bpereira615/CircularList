@@ -35,8 +35,11 @@ public class SimDriver {
         while (infile.hasNext()) {
             name = infile.nextLine();
 
+            System.out.println(name);
+
             CookingStation c = new CookingStation(name);
-            stations.insert(c);
+            
+            System.out.println(stations);
 
             line = infile.nextLine();
             while (!line.equals("")) {
@@ -46,20 +49,22 @@ public class SimDriver {
                 under = inline.nextInt();
                 over = inline.nextInt();
                 
-                CookingItem i = new CookingItem(item, time, under, over);
-                c.addItem(i);
+                c.addItem(new CookingItem(item, time, under, over));
                 //name += " " + item + " " + time + " " + under + " " + over;
                 line = infile.nextLine();
             }
             //System.out.println(name);
+            stations.insert(c);
         }
-
+        /*
         String str = "[ ";
         while(!stations.isAtEnd()) {
-        	str += stations.getValue().toString();
+        	//str += stations.getValue().toString();
+        	stations.next();
         }
         str += "]";
-        System.out.println(str);
+        */
+        System.out.println(stations);
 
 
 	}
