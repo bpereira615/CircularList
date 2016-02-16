@@ -74,7 +74,7 @@ public class CList<T> implements List<T> {
         this.size = 0;
         //this.currPos = 0;
         this.head = null; // new Node(null, null, null);
-        this.curr = this.head; // this.head; // because insert will insert after curr
+        this.curr = this.head; // because insert will insert after curr
         //TODO: is tail required?
     }
 
@@ -140,7 +140,7 @@ public class CList<T> implements List<T> {
             return this.insert(t); // already built zero case into insert
         } else {
             Node temp = this.curr; // hold onto original position
-            moveToEnd(); //code reuse
+            this.moveToEnd(); //code reuse
             Node n = new Node(t, this.curr, this.head);
             n.prev.next = n;
             n.next.prev = n;
@@ -169,12 +169,12 @@ public class CList<T> implements List<T> {
         } else {
             T val = this.curr.data;
             this.curr.next.prev = this.curr.prev; // bypass node being deleted
-            this.curr.prev.next = this.curr.next; // bypass it in other direction
+            this.curr.prev.next = this.curr.next; // bypass in other direction
             this.size--;
 
-            if(this.curr == this.head.prev) {
-                this.curr = this.head; // set cursor to head if curr last element
-            } else if (this.curr == this.head){
+            if (this.curr == this.head.prev) {
+                this.curr = this.head; // set cursor head if curr last element
+            } else if (this.curr == this.head) {
                 this.head = this.curr.next; //corner case for removing head
                 this.curr = this.head;
             } else {
@@ -211,7 +211,7 @@ public class CList<T> implements List<T> {
      * Set the current position to the start of the list.
      */
     public void moveToStart() {
-        if(this.size != 0) {
+        if (this.size != 0) {
             this.curr = this.head;
         }
     }
@@ -220,7 +220,7 @@ public class CList<T> implements List<T> {
      * Set the current position to the end of the list.
      */
     public void moveToEnd() {
-        if(this.size != 0) {
+        if (this.size != 0) {
             this.curr = this.head.prev;
         }
     }
@@ -286,8 +286,8 @@ public class CList<T> implements List<T> {
      * @return true if successfully changed position, false otherwise
      */
     public boolean moveToPos(int pos) {
-        //return false if position is less than 0 or greather than list length - 1        
-        if(pos < 0 || pos > (this.size - 1)) {
+        //return false if position less than 0, greather than length-1        
+        if (pos < 0 || pos > (this.size - 1)) {
             return false;
         }
         this.moveToStart(); // code reuse!
@@ -321,7 +321,7 @@ public class CList<T> implements List<T> {
     public String toString() {
         //TODO: check
 
-        if(this.size == 0) {
+        if (this.size == 0) {
             return "ERROR: List is empty!";
         }
         String str = "[ ";
@@ -341,14 +341,14 @@ public class CList<T> implements List<T> {
     }
 
     /**
-     * Moves the cursor to previous node, regardless of if at head or not
+     * Moves the cursor to previous node, regardless of if at head or not.
      */
     private void circularPrev() {
         this.curr = this.curr.prev;
     }
 
     /**
-     * Moves the cursor to next node, regardless of if at tail or not
+     * Moves the cursor to next node, regardless of if at tail or not.
      */
     private void circularNext() {
         this.curr = this.curr.next;
