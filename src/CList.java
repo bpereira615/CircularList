@@ -73,7 +73,7 @@ public class CList<T> implements List<T> {
         // trying different sizes for null case, 0 doesn't work
         this.size = 0;
         //this.currPos = 0;
-        this.head = null; // new Node(null, null, null); // new Node(null, null, null);
+        this.head = new Node(null, null, null); // new Node(null, null, null);
         this.curr = this.head; // this.head; // because insert will insert after curr
         //TODO: is tail required?
     }
@@ -212,14 +212,18 @@ public class CList<T> implements List<T> {
      * Set the current position to the start of the list.
      */
     public void moveToStart() {
-        this.curr = this.head;
+        if(this.size != 0) {
+            this.curr = this.head;
+        }
     }
 
     /**
      * Set the current position to the end of the list.
      */
     public void moveToEnd() {
-        this.curr = this.head.prev;
+        //if(this.size != 0) {
+            this.curr = this.head.prev;
+        //}
     }
 
     /**
@@ -254,9 +258,10 @@ public class CList<T> implements List<T> {
      * @return the current position in the list
      */
     public int currPos() {
+        
         // at the head
         int position = 0;
-
+    
         // temporary variable for current position
         Node temp = this.curr;
         this.moveToStart(); // code reuse!
@@ -265,7 +270,8 @@ public class CList<T> implements List<T> {
         while (this.curr != temp) {
             position++;
             this.next();
-        }
+        } 
+
 
         return position;
     }
