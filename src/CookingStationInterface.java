@@ -30,8 +30,11 @@ interface CookingStationInterface {
      *            should be removed from the station.
      * @param penaltyThreshold
      *            the limit on the penalty value that may be used to determine
-     *            if an item should be removed from the station.
+     *            if an item should be removed from the station. Must be a negative
+     *            number if not used to determine when items are removed.
+     * @param numItems
+     *            number of items currently in kitchen
      * @return the item if you decide to remove it, or null otherwise
      */
-    public CookingItem tend(int removeThreshold, int penaltyThreshold);
+    public CookingItem tend(int removeThreshold, int penaltyThreshold, int numItems);
 }

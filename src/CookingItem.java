@@ -84,7 +84,24 @@ public class CookingItem implements CookingItemInterface {
             return Math.abs(remain) * this.overdonePenalty;
         }
     }
-    
+    /**
+     * Calculate the penalty if this dish were removed after the input time
+     *
+     * @param numTicks ticks until dish is tended again
+     *
+     * @return the penalty
+    */
+    public int penalty(int numTicks) {
+        // calculate time remaining after ticks
+        int remain = this.timeRemaining() - numTicks;
+        if (remain > 0) {
+            return remain * this.underdonePenalty;
+        } else {
+            return Math.abs(remain) * this.overdonePenalty;
+        }
+    }
+
+
     /**
      * Prints the name of the item and its cooking time.
      *
