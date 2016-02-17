@@ -81,6 +81,10 @@ public class CookingStation extends CList implements CookingStationInterface {
         // take item off stove to check it
         CookingItem temp = items.getValue();
 
+        if (temp == null) {
+            return null;
+        }
+
         // if its remaining time is too low, return it
         if (temp.timeRemaining() <= removeThreshold){
             items.remove();

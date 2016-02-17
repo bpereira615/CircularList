@@ -71,7 +71,7 @@ public class SimDriver {
         		break;
         	}
 
-        	CookingItem i = curr.tend(1, 0);
+        	CookingItem i = curr.tend(2, 0);
 
 
         	if (i != null) {
