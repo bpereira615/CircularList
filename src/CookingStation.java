@@ -63,7 +63,46 @@ public class CookingStation extends CList implements CookingStationInterface {
     }
 
     /**
-     * Tend the current item
+     * Tend the current item (original version) 
+     * 
+     * @param removeThreshold
+     *            the number of minutes that may be used to determine if an item
+     *            should be removed from the station.
+     * @param penaltyThreshold
+     *            the limit on the penalty value that may be used to determine
+     *            if an item should be removed from the station. 
+     *           
+     * @return the item if you decide to remove it, or null otherwise
+     */
+    public CookingItem tend(int removeThreshold, int penaltyThreshold) {
+   
+        // not sure how to select which threshold to use
+        // check how much time is left in the current item
+        
+        // take item off stove to check it
+        CookingItem temp = items.getValue();
+        
+        // zero case, don't return anything if nothing in station
+        if (temp == null) {
+            return null;
+        }
+       
+        // if item's remaining time is too low, return it
+        if (temp.timeRemaining() <= removeThreshold){
+            items.remove();
+            return temp;
+        // if it needs more time, put it back on stove   
+        } else {
+            items.circularNext();
+            return null;
+        }
+       
+    }
+
+
+
+    /**
+     * Tend the current item (our version) 
      * 
      * @param removeThreshold
      *            the number of minutes that may be used to determine if an item
@@ -72,8 +111,7 @@ public class CookingStation extends CList implements CookingStationInterface {
      *            the limit on the penalty value that may be used to determine
      *            if an item should be removed from the station. If this value
      *            if non-negative, it will be used to determine when items are 
-     *            removed. To use a pure time threshold input -1 for 
-     *            penaltyThreshold. 
+     *            removed.  
      * @param numItems
      *            number of items currently in the list
      *            ie number of dishes in all stations 
