@@ -54,17 +54,20 @@ public class SimDriver {
                 line = infile.nextLine();
             }
             //System.out.println(name);
-            stations.insert(c);
+            stations.append(c);
         }
-        /*
-        String str = "[ ";
-        while(!stations.isAtEnd()) {
-        	//str += stations.getValue().toString();
-        	stations.next();
-        }
-        str += "]";
-        */
         System.out.println(stations);
+
+
+
+
+
+        // while there is still something cooking
+        // one step of simulation (decrement 1 minute for all items on all stations)
+        // tend the next station and decide whether to remove based on threshholds
+        // keep running sum of penalties
+        // print status of all stations
+    	// print the total penalties
 
 
 	}

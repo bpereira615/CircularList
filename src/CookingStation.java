@@ -75,6 +75,7 @@ public class CookingStation extends CList implements CookingStationInterface {
             return temp;
         // if it needs more time, put it back on stove   
         } else {
+            items.circularNext();
             return null;
         }
     }

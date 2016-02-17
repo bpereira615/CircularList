@@ -166,6 +166,11 @@ public class CList<T> implements List<T> {
         // }
         if (this.size == 0) {
             return null;
+        } else if (this.size == 1) { 
+            T val = this.curr.data;
+            this.clear();
+            return val;
+
         } else {
             T val = this.curr.data;
             this.curr.next.prev = this.curr.prev; // bypass node being deleted
@@ -343,14 +348,14 @@ public class CList<T> implements List<T> {
     /**
      * Moves the cursor to previous node, regardless of if at head or not.
      */
-    private void circularPrev() {
+    public void circularPrev() {
         this.curr = this.curr.prev;
     }
 
     /**
      * Moves the cursor to next node, regardless of if at tail or not.
      */
-    private void circularNext() {
+    public void circularNext() {
         this.curr = this.curr.next;
     }
 }
