@@ -1,6 +1,6 @@
 /********************************************************************
- * Benjamin Hoertnagl-Pereira bhoertn1 631-488-7197 bhoertn1@jhu.edu Lydia
- * Carroll lcarro12 240-994-8355 lcarro12@jhu.edu
+ * Benjamin Hoertnagl-Pereira bhoertn1 631-488-7197 bhoertn1@jhu.edu 
+ * Lydia Carroll lcarro12 240-994-8355 lcarro12@jhu.edu
  *
  * 600.226.02 CS226 Data Structures Project 1 - CircularList
  *
@@ -43,8 +43,10 @@ public class CookingStation extends CList implements CookingStationInterface {
      */
     public void tick() {
         //TODO: iterate through list and tick all of the items
+        // this will likely happen at the interface level b/c need to iterate
+        // through each station
         while(!(this.items.isAtEnd())){
-            this.items.getValue().tick();
+            this.items.getValue().tick(); // I don't think this line has meaning
             this.items.next();
         }
     }
@@ -62,7 +64,19 @@ public class CookingStation extends CList implements CookingStationInterface {
      */
     public CookingItem tend(int removeThreshold, int penaltyThreshold) {
         //TODO: thresholds??
-        return null;
+        // not sure how to select which threshold to use
+        // check how much time is left in the current item
+        
+        // take item off stove to check it
+        CookingItem temp = items.getValue();
+        // if its remaining time is too low, return it
+        if (temp.timeRemaining() <= removeThreshold){
+            items.remove();
+            return temp;
+        // if it needs more time, put it back on stove   
+        } else {
+            return null;
+        }
     }
 
 
