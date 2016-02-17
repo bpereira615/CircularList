@@ -35,11 +35,9 @@ public class SimDriver {
         while (infile.hasNext()) {
             name = infile.nextLine();
 
-            System.out.println(name);
 
             CookingStation c = new CookingStation(name);
             
-            System.out.println(stations);
 
             line = infile.nextLine();
             while (!line.equals("")) {
@@ -50,7 +48,6 @@ public class SimDriver {
                 over = inline.nextInt();
                 
                 c.addItem(new CookingItem(item, time, under, over));
-                //name += " " + item + " " + time + " " + under + " " + over;
                 line = infile.nextLine();
             }
             //System.out.println(name);
@@ -60,10 +57,47 @@ public class SimDriver {
 
 
 
-
-
+        int penalty = 0;
+        int index = -1;
         // while there is still something cooking
-        // one step of simulation (decrement 1 minute for all items on all stations)
+        while (stations.length() != 0) {
+
+        	index = stations.currPos(); // save the current position
+
+        	CookingStation curr = stations.getValue();
+
+
+
+        	CookingItem i = curr.tend(1, 0);
+
+
+        	//System.out.println(i);
+
+
+        	//if (!i.equals(null)) {
+        		//penalty += i.penalty();
+        	//}
+
+        	//tick all stations
+        	stations.moveToStart();
+        	while (!stations.isAtEnd()) {
+        		stations.getValue().tick();
+        		stations.next();
+        	}
+        	stations.getValue().tick();
+
+        	//bring back to original position
+        	stations.moveToPos(index);
+
+        	index = -1;
+
+
+        	stations.circularNext();
+        	System.out.println(i + "\t" + stations);
+
+        }
+
+        
         // tend the next station and decide whether to remove based on threshholds
         // keep running sum of penalties
         // print status of all stations

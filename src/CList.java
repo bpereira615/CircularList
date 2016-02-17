@@ -327,7 +327,7 @@ public class CList<T> implements List<T> {
         //TODO: check
 
         if (this.size == 0) {
-            return "ERROR: List is empty!";
+            return "";
         }
         String str = "[ ";
 

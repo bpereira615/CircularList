@@ -45,10 +45,21 @@ public class CookingStation extends CList implements CookingStationInterface {
         //TODO: iterate through list and tick all of the items
         // this will likely happen at the interface level b/c need to iterate
         // through each station
+
+        if (this.items.length() == 0){
+            return;
+        }
+
+        int index = this.items.currPos();
+
+        this.items.moveToStart();
         while(!(this.items.isAtEnd())){
             this.items.getValue().tick(); // I don't think this line has meaning
             this.items.next();
         }
+        this.items.getValue().tick();
+
+        this.items.moveToPos(index);
     }
 
     /**
@@ -69,6 +80,7 @@ public class CookingStation extends CList implements CookingStationInterface {
         
         // take item off stove to check it
         CookingItem temp = items.getValue();
+
         // if its remaining time is too low, return it
         if (temp.timeRemaining() <= removeThreshold){
             items.remove();
