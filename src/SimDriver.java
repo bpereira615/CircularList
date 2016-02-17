@@ -66,7 +66,10 @@ public class SimDriver {
 
         	CookingStation curr = stations.getValue();
 
-
+        	//check if all of the stations are empty
+        	if (!stations.toString().contains(")")) {
+        		return;
+        	}
 
         	CookingItem i = curr.tend(1, 0);
 
@@ -79,8 +82,11 @@ public class SimDriver {
         	//}
 
         	//tick all stations
+
+        	boolean exit = false;
         	stations.moveToStart();
         	while (!stations.isAtEnd()) {
+
         		stations.getValue().tick();
         		stations.next();
         	}
@@ -92,7 +98,9 @@ public class SimDriver {
         	index = -1;
 
 
+        	
         	stations.circularNext();
+        		
         	System.out.println(i + "\t" + stations);
 
         }

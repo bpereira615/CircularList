@@ -101,16 +101,6 @@ public class CookingStation extends CList implements CookingStationInterface {
      */
     
     public String toString() {
-        /*
-        String str = this.name + "[ ";
-        while(!items.isAtEnd()) {
-            str += items.getValue().toString() + " ";
-            items.next();
-        }
-        str += items.getValue().toString() + "]"; //the item in the list
-        
-        return str;
-        */
         return this.name + items.toString();
     }
     
