@@ -74,10 +74,6 @@ public class SimDriver {
         	CookingItem i = curr.tend(1, 0);
 
 
-        	//System.out.println(i);
-
-        	//System.out.println(i != null);
-
         	if (i != null) {
         		penalty += i.penalty();
         	}
