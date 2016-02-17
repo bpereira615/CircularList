@@ -68,7 +68,7 @@ public class SimDriver {
 
         	//check if all of the stations are empty
         	if (!stations.toString().contains(")")) {
-        		return;
+        		break;
         	}
 
         	CookingItem i = curr.tend(1, 0);
@@ -76,10 +76,11 @@ public class SimDriver {
 
         	//System.out.println(i);
 
+        	//System.out.println(i != null);
 
-        	//if (!i.equals(null)) {
-        		//penalty += i.penalty();
-        	//}
+        	if (i != null) {
+        		penalty += i.penalty();
+        	}
 
         	//tick all stations
 
@@ -101,15 +102,18 @@ public class SimDriver {
         	
         	stations.circularNext();
         		
-        	System.out.println(i + "\t" + stations);
+        	System.out.println(stations);
 
         }
+        
+        // print the total penalties
+        System.out.println("Final penalty was: " + penalty);
 
         
         // tend the next station and decide whether to remove based on threshholds
         // keep running sum of penalties
         // print status of all stations
-    	// print the total penalties
+
 
 
 	}
