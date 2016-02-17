@@ -75,7 +75,7 @@ public class CList<T> implements List<T> {
         //this.currPos = 0;
         this.head = null; // new Node(null, null, null);
         this.curr = this.head; // because insert will insert after curr
-        //TODO: is tail required?
+       
     }
 
     /**
@@ -89,7 +89,7 @@ public class CList<T> implements List<T> {
      * @return true if successfully inserted, false otherwise
      */
     public boolean insert(T t) {
-        //TODO: adjust this.size when we figure out null case
+        // null case
         if (this.size == 0) {
             // need to make an initial node
             this.head = new Node(t, null, null);
@@ -98,8 +98,6 @@ public class CList<T> implements List<T> {
             // also set next to current b/c only one node
             this.head.next = this.head;
 
-            //TODO: use tail node as well?
-            //TODO: retunr false cases?
             
             this.size++;
             this.curr = this.head;
@@ -135,7 +133,7 @@ public class CList<T> implements List<T> {
      * @return true if successfully appended, false otherwise
      */
     public boolean append(T t) {
-        //TODO: return false case?
+       
         if (this.size == 0) {
             return this.insert(t); // already built zero case into insert
         } else {
@@ -159,18 +157,15 @@ public class CList<T> implements List<T> {
      * no current element.
      */
     public T remove() {
-        // do we have a tail?
-        // f this
-        // if (this.curr.next == this.tail) {
-        // return null;
-        // }
+        // null case
         if (this.size == 0) {
             return null;
+        // single node case
         } else if (this.size == 1) { 
             T val = this.curr.data;
             this.clear();
             return val;
-
+        // multiple node case
         } else {
             T val = this.curr.data;
             this.curr.next.prev = this.curr.prev; // bypass node being deleted
@@ -196,8 +191,6 @@ public class CList<T> implements List<T> {
      */
     public T getValue() {
         if (this.size == 0) {
-            // TODO: error statement to be added
-            //TODO: is this even needed? May just return null
             return null;
         }
         return this.curr.data;
@@ -235,7 +228,6 @@ public class CList<T> implements List<T> {
      * beginning.
      */
     public void prev() {
-        // TODO: check if this is faulty in comparison operation
         if (this.curr != this.head) {
             this.curr = this.curr.prev;
         } else {
@@ -247,7 +239,6 @@ public class CList<T> implements List<T> {
      * Move the current position one step right, no change if already at end.
      */
     public void next() {
-        // TODO: what is defined as end
         if (this.size == 0) {
             System.out.println("ERROR: Empty list!");
         } else if (this.curr != this.head.prev) {
@@ -324,7 +315,6 @@ public class CList<T> implements List<T> {
      * @return contents of list as a String
      */
     public String toString() {
-        //TODO: check
 
         if (this.size == 0) {
             return "";
