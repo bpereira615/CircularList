@@ -70,7 +70,13 @@ public class SimDriver {
         	index = stations.currPos();
             // what station are we currently at? stove? grill?
         	CookingStation curr = stations.getValue();
-
+            // check if a station has no items
+            // currently kills all stations after  one run
+            //if (curr.getValue() == null) {
+              //  stations.remove();
+               // index = -1;
+               // break;
+           // }
         	//check if all of the stations are empty
         	if (!stations.toString().contains(")")) {
         		break;
@@ -78,7 +84,7 @@ public class SimDriver {
             
             // tend the current item in the current station
             // ex: tend chicken on grill
-        	CookingItem i = curr.tend(2, -1, numItems);
+        	CookingItem i = curr.tend(2, 1, numItems);
 
             // increment total penalties
             // TODO: change variable name to totPenalty
