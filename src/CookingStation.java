@@ -115,7 +115,6 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
      * @return the item if you decide to remove it, or null otherwise
      */
 
-    /*
     public CookingItem tend(int removeThreshold, int penaltyThreshold, int numItems) {
         //TODO: thresholds??
         // not sure how to select which threshold to use
@@ -156,7 +155,6 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
             }
         }
     }
-    */
 
 
 

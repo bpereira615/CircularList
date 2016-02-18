@@ -65,9 +65,9 @@ public class SimDriver {
 
 
         //simulation(stations, 0, 0, numItems);
-        simulation(stations, 1, 0, numItems);
-        //simulation(stations, 2, 0, numItems);
         //simulation(stations, 1, 0, numItems);
+        //simulation(stations, 2, 0, numItems);
+        simulation(stations, 1, 1, numItems);
 
     }
 
@@ -129,7 +129,12 @@ public class SimDriver {
         	}
             
             // tend the current item in the current station
-            CookingItem i = curr.tend(removeThreshold, penaltyThreshold);
+            CookingItem i;
+            if (penaltyThreshold > 0) {
+                i = curr.tend(removeThreshold, penaltyThreshold, numItems);
+            } else {
+                i = curr.tend(removeThreshold, penaltyThreshold);
+            }
 
             // increment total penalties
             // TODO: change variable name to totPenalty
@@ -167,13 +172,6 @@ public class SimDriver {
         o.println("Final penalty was: " + penalty);
 
         o.close();
-
-        
-        // tend the next station and decide whether to remove based on threshholds
-        // keep running sum of penalties
-        // print status of all stations
-
-
 
 	}
 	
