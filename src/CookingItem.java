@@ -7,6 +7,13 @@
  * NOTE: this file was taken from the assignment page
  *******************************************************************/
 
+
+/**
+ * A food item representation for the CookingStation.
+ *
+ * @author Benjamin Hoertnagl-Pereira
+ * @author Lydia Carroll
+ */
 public class CookingItem implements CookingItemInterface {
     /**
      * Name of the cooking item.
@@ -18,12 +25,6 @@ public class CookingItem implements CookingItemInterface {
      * Cooking time of the item.
      */
     private int time;
-
-    /**
-     * Last time checked for given item.
-     */
-    //private int lastChecked;
-    //may not need to be used
 
     /**
      * Penalty per minute for underdone.
@@ -75,8 +76,6 @@ public class CookingItem implements CookingItemInterface {
      * @return the penalty
      */
     public int penalty() {
-        // TODO: Math.abs import
-        // TODO: this.timeRemaining() or without this
         int remain = this.timeRemaining();
         if (remain > 0) {
             return remain * this.underdonePenalty;
@@ -85,7 +84,7 @@ public class CookingItem implements CookingItemInterface {
         } 
     }
     /**
-     * Calculate the penalty if this dish were removed after the input time
+     * Calculate the penalty if this dish were removed after the input time.
      *
      * @param numTicks ticks until dish is tended again
      *
@@ -110,7 +109,6 @@ public class CookingItem implements CookingItemInterface {
     public String toString() {
         String str = "(";
         str += this.name + " " + this.timeRemaining() + ")";
-        //TODO: check
         return str;
     }
 }

@@ -7,7 +7,15 @@
  * NOTE: this file was taken from the assignment page
  *******************************************************************/
 
-public class CookingStation extends CList<CookingItem> implements CookingStationInterface {
+/**
+ * A representation of a station in a kitchen (ie grill, oven, etc).
+ * 
+ * @author Benjamin Hoertnagl-Pereira
+ * @author Lydia Carroll
+ */
+
+public class CookingStation extends CList<CookingItem> 
+    implements CookingStationInterface {
     /**
      * Name of the cooking station.
      */
@@ -38,19 +46,14 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
      * Simulate one minute time passing for this station.
      */
     public void tick() {
-        //TODO: iterate through list and tick all of the items
-        // this will likely happen at the interface level b/c need to iterate
-        // through each station
-
-        //TODO: this is an issue
-        if (this.length() == 0){
+        if (this.length() == 0) {
             return;
         }
 
         int index = this.currPos();
 
         this.moveToStart();
-        while(!(this.isAtEnd())){
+        while (!(this.isAtEnd())) {
             this.getValue().tick(); // I don't think this line has meaning
             this.next();
         }
@@ -60,7 +63,7 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
     }
 
     /**
-     * Tend the current item (original version) 
+     * Tend the current item (original version).
      * 
      * @param removeThreshold
      *            the number of minutes that may be used to determine if an item
@@ -85,7 +88,7 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
         }
        
         // if item's remaining time is too low, return it
-        if (temp.timeRemaining() <= removeThreshold){
+        if (temp.timeRemaining() <= removeThreshold) {
             this.remove();
             return temp;
         // if it needs more time, put it back on stove   
@@ -99,7 +102,7 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
 
 
     /**
-     * Tend the current item (our version) 
+     * Tend the current item (our version - for custom simulation). 
      * 
      * @param removeThreshold
      *            the number of minutes that may be used to determine if an item
@@ -115,10 +118,8 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
      * @return the item if you decide to remove it, or null otherwise
      */
 
-    public CookingItem tend(int removeThreshold, int penaltyThreshold, int numItems) {
-        //TODO: thresholds??
-        // not sure how to select which threshold to use
-        // check how much time is left in the current item
+    public CookingItem tend(int removeThreshold, int penaltyThreshold, 
+            int numItems) {
         
         // take item off stove to check it
         CookingItem temp = this.getValue();
@@ -134,7 +135,7 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
             // find penalties after one full rotation through all stations/items
             int nextPen = temp.penalty(numItems);
             // take item off if nowPen < nextPen
-            if (nowPen <= nextPen){
+            if (nowPen <= nextPen) {
                 this.remove();
                 return temp;
             } else {
@@ -145,7 +146,7 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
         // use time threshold
         
             // if item's remaining time is too low, return it
-            if (temp.timeRemaining() <= removeThreshold){
+            if (temp.timeRemaining() <= removeThreshold) {
                 this.remove();
                 return temp;
             // if it needs more time, put it back on stove   
