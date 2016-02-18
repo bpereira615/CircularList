@@ -7,16 +7,13 @@
  * NOTE: this file was taken from the assignment page
  *******************************************************************/
 
-public class CookingStation extends CList implements CookingStationInterface {
+public class CookingStation extends CList<CookingItem> implements CookingStationInterface {
     /**
      * Name of the cooking station.
      */
     private String name;
 
-    /**
-     * Circular list of items at the station.
-     */
-    private CList<CookingItem> items;
+
 
     /**
      * Constructor for CookingStation.
@@ -25,7 +22,7 @@ public class CookingStation extends CList implements CookingStationInterface {
      */
     public CookingStation(String n) {
         this.name = n;
-        this.items = new CList<CookingItem>();
+        this.clear();
     }
 
     /**
@@ -35,7 +32,7 @@ public class CookingStation extends CList implements CookingStationInterface {
      *            the dish to add
      */
     public void addItem(CookingItem it) {
-        items.append(it);
+        this.append(it);
     }
 
     /**
@@ -46,20 +43,21 @@ public class CookingStation extends CList implements CookingStationInterface {
         // this will likely happen at the interface level b/c need to iterate
         // through each station
 
-        if (this.items.length() == 0){
+        //TODO: this is an issue
+        if (this.length() == 0){
             return;
         }
 
-        int index = this.items.currPos();
+        int index = this.currPos();
 
-        this.items.moveToStart();
-        while(!(this.items.isAtEnd())){
-            this.items.getValue().tick(); // I don't think this line has meaning
-            this.items.next();
+        this.moveToStart();
+        while(!(this.isAtEnd())){
+            this.getValue().tick(); // I don't think this line has meaning
+            this.next();
         }
-        this.items.getValue().tick();
+        this.getValue().tick();
 
-        this.items.moveToPos(index);
+        this.moveToPos(index);
     }
 
     /**
@@ -80,7 +78,7 @@ public class CookingStation extends CList implements CookingStationInterface {
         // check how much time is left in the current item
         
         // take item off stove to check it
-        CookingItem temp = items.getValue();
+        CookingItem temp = this.getValue();
         
         // zero case, don't return anything if nothing in station
         if (temp == null) {
@@ -89,11 +87,11 @@ public class CookingStation extends CList implements CookingStationInterface {
        
         // if item's remaining time is too low, return it
         if (temp.timeRemaining() <= removeThreshold){
-            items.remove();
+            this.remove();
             return temp;
         // if it needs more time, put it back on stove   
         } else {
-            items.circularNext();
+            this.circularNext();
             return null;
         }
        
@@ -123,7 +121,7 @@ public class CookingStation extends CList implements CookingStationInterface {
         // check how much time is left in the current item
         
         // take item off stove to check it
-        CookingItem temp = items.getValue();
+        CookingItem temp = this.getValue();
         
         // zero case, don't return anything if nothing in station
         if (temp == null) {
@@ -137,10 +135,10 @@ public class CookingStation extends CList implements CookingStationInterface {
             int nextPen = temp.penalty(numItems);
             // take item off if nowPen < nextPen
             if (nowPen <= nextPen){
-                items.remove();
+                this.remove();
                 return temp;
             } else {
-                items.circularNext();
+                this.circularNext();
                 return null;
             }
         } else {
@@ -148,11 +146,11 @@ public class CookingStation extends CList implements CookingStationInterface {
         
             // if item's remaining time is too low, return it
             if (temp.timeRemaining() <= removeThreshold){
-                items.remove();
+                this.remove();
                 return temp;
             // if it needs more time, put it back on stove   
             } else {
-                items.circularNext();
+                this.circularNext();
                 return null;
             }
         }
@@ -167,7 +165,7 @@ public class CookingStation extends CList implements CookingStationInterface {
      */
     
     public String toString() {
-        return this.name + items.toString();
+        return this.name + super.toString();
     }
     
 }

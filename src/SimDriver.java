@@ -12,6 +12,10 @@ public class SimDriver {
 		//Reading file, taken from ReadFile.java on class site
 		Scanner infile = null;
         boolean inerror = false;
+
+        //Writing file, specified by simulation
+        Scanner outfile = null;
+
         int numItems = 0; // total number of dishes being cooked
 
         try {
@@ -57,7 +61,7 @@ public class SimDriver {
             stations.append(c);
         }
         System.out.println(stations);
-        System.out.println("number of items: " + numItems);
+        //System.out.println("number of items: " + numItems);
 
         // this is where our actual simulation starts
         int penalty = 0;
@@ -65,6 +69,8 @@ public class SimDriver {
       
         // while there is still something cooking
         while (stations.length() != 0) {
+
+            
             
             // index = current position in stations, ie at stove
         	index = stations.currPos();
@@ -84,7 +90,8 @@ public class SimDriver {
             
             // tend the current item in the current station
             // ex: tend chicken on grill
-        	CookingItem i = curr.tend(2, 1, numItems);
+        	//CookingItem i = curr.tend(3, 1, numItems);
+            CookingItem i = curr.tend(1, 1);
 
             // increment total penalties
             // TODO: change variable name to totPenalty
@@ -94,16 +101,7 @@ public class SimDriver {
                 numItems--;
         	}
 
-        	//tick all stations
-
-        	boolean exit = false;
-        	stations.moveToStart();
-        	while (!stations.isAtEnd()) {
-
-        		stations.getValue().tick();
-        		stations.next();
-        	}
-        	stations.getValue().tick();
+        	
 
         	//bring back to original position
         	stations.moveToPos(index);
@@ -115,7 +113,7 @@ public class SimDriver {
         	stations.circularNext();
         		
         	System.out.println(stations);
-            System.out.println("number of items: " + numItems);
+            //System.out.println("number of items: " + numItems);
         }
         
         // print the total penalties
