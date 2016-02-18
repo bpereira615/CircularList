@@ -20,6 +20,7 @@ Files:
     CookingStation.java - represents a station in the kitchen
     SimDriver.java - a driver for Cutthroat Kitchen Sumulation
 
+    infile.txt - input for simulation in text
     sim0.txt - simulation with removeThreshold = 0
     sim1.txt - simulation with removeThreshold = 1
     sim2.txt - simulation with removeThreshold = 2

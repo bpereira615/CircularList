@@ -84,13 +84,17 @@ public final class SimDriver {
             }
             stations.append(c);
         }
-
+        
+        //******************************************************
 
         //Choosing simulation to be run, comment all but one 
         //simulation(stations, 0, 0, numItems);
         //simulation(stations, 1, 0, numItems);
         //simulation(stations, 2, 0, numItems);
         simulation(stations, 1, 1, numItems);
+
+
+        //******************************************************
 
     }
 
