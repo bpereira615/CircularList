@@ -64,10 +64,10 @@ public class SimDriver {
         }
 
 
-        simulation(stations, 0, 0, numItems);
-        //simulation(stations1, 1, 0, numItems);
-        //simulation(stations2, 2, 0, numItems);
-        //simulation(stationsP, 1, 0, numItems);
+        //simulation(stations, 0, 0, numItems);
+        simulation(stations, 1, 0, numItems);
+        //simulation(stations, 2, 0, numItems);
+        //simulation(stations, 1, 0, numItems);
 
     }
 
@@ -93,21 +93,24 @@ public class SimDriver {
         int index = -1;
       
 
+        stations.moveToStart();
+        System.out.println(stations);
+        o.println(stations);
+
         //initially tick all stations
         index = stations.currPos();
         stations.moveToStart();
-            while (!stations.isAtEnd()) {
-
-                stations.getValue().tick();
-                stations.next();
-            }
+        while (!stations.isAtEnd()) {
             stations.getValue().tick();
+            stations.next();
+        }
+        stations.getValue().tick();
 
-            //bring back to original position
-            stations.moveToPos(index);
+        //bring back to original position
+        stations.moveToPos(index);
 
 
-        System.out.println(stations);
+        
 
         index = -1;
 
@@ -155,11 +158,15 @@ public class SimDriver {
         	stations.circularNext();
         		
         	System.out.println(stations);
+            o.println(stations);
             //System.out.println("number of items: " + numItems);
         }
         
         // print the total penalties
         System.out.println("Final penalty was: " + penalty);
+        o.println("Final penalty was: " + penalty);
+
+        o.close();
 
         
         // tend the next station and decide whether to remove based on threshholds
