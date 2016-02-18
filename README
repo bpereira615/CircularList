@@ -12,13 +12,30 @@ lcarrol2@jhu.edu
 Project 1 - CircularList
 
 Files:
-List.java - a list interface, to be implemented using circular list
-CList.java - a circular, doubly linked list implementation
-CookingItemInterface - an interface for CookingItem
-CookingItem - represents an item at a given station
-CookingStationInterface - an interface for CookingStation
-CookingStation - represents a station in the kitchen
+    List.java - a list interface, to be implemented using circular list
+    CList.java - a circular, doubly linked list implementation
+    CookingItemInterface.java - an interface for CookingItem
+    CookingItem.java - represents an item at a given station
+    CookingStationInterface.java - an interface for CookingStation
+    CookingStation.java - represents a station in the kitchen
+    SimDriver.java - a driver for Cutthroat Kitchen Sumulation
+
+    sim0.txt - simulation with removeThreshold = 0
+    sim1.txt - simulation with removeThreshold = 1
+    sim2.txt - simulation with removeThreshold = 2
+    simP.txt - simulation with custom tend function
+
+Comments:
+    Our total penalty output does not seem to match with the expected
+    values posted on the course site, perhaps an issue of where the
+    simulation begins in the list or an off by 1 tick error?
+
+    To get the various simulation file outputs, one must uncomment the
+    code preceeding the simulate() function in SimDriver.   
 
 NOTE:
-List.java, CookingItemInterface.java, CookingStationInterface.java interface taken from assignment page, course site
-CList.java adopted from DDList.java implementation on course site
+    List, CookingItem, and CookingStation taken from course site
+    CList.java adopted from DDList.java implementation on course site
+
+
+
