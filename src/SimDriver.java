@@ -65,12 +65,31 @@ public class SimDriver {
 
         // this is where our actual simulation starts
         int penalty = 0;
+
+
         int index = -1;
       
+
+        //initially tick all stations
+        index = stations.currPos();
+        stations.moveToStart();
+            while (!stations.isAtEnd()) {
+
+                stations.getValue().tick();
+                stations.next();
+            }
+            stations.getValue().tick();
+
+            //bring back to original position
+            stations.moveToPos(index);
+
+
+
+
+        index = -1;
+
         // while there is still something cooking
         while (stations.length() != 0) {
-
-            
             
             // index = current position in stations, ie at stove
         	index = stations.currPos();
@@ -101,7 +120,16 @@ public class SimDriver {
                 numItems--;
         	}
 
-        	
+        	//tick all stations
+
+        	boolean exit = false;
+        	stations.moveToStart();
+        	while (!stations.isAtEnd()) {
+
+        		stations.getValue().tick();
+        		stations.next();
+        	}
+        	stations.getValue().tick();
 
         	//bring back to original position
         	stations.moveToPos(index);
