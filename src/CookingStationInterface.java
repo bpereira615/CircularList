@@ -34,5 +34,5 @@ interface CookingStationInterface {
      *            number if not used to determine when items are removed.
      *  @return the item if you decide to remove it, or null otherwise
      */
-    public CookingItem tend(int removeThreshold, int penaltyThreshold, int numItems);
+    public CookingItem tend(int removeThreshold, int penaltyThreshold);
 }

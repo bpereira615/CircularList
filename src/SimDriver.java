@@ -1,10 +1,12 @@
 import java.util.Scanner;
 import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 // import java.util.ArrayIndexOutOfBoundsException;
 
 public class SimDriver {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		/** Circular list of stations in kitchen */
 		CList<CookingStation> stations = new CList<CookingStation>();
 
@@ -60,13 +62,34 @@ public class SimDriver {
             //System.out.println(name);
             stations.append(c);
         }
-        System.out.println(stations);
-        //System.out.println("number of items: " + numItems);
+
+
+        simulation(stations, 0, 0, numItems);
+        //simulation(stations1, 1, 0, numItems);
+        //simulation(stations2, 2, 0, numItems);
+        //simulation(stationsP, 1, 0, numItems);
+
+    }
+
+
+
+    static void simulation(CList<CookingStation> stations, int removeThreshold, 
+        int penaltyThreshold, int numItems) throws IOException{
+
+        //setting up output file
+        String outfile = "sim" + removeThreshold + ".txt";
+
+        if (penaltyThreshold != 0) {
+            outfile = "simP.txt";
+        }
+
+        PrintWriter o = new PrintWriter(new FileWriter(outfile));
+
 
         // this is where our actual simulation starts
         int penalty = 0;
 
-
+        //index of current station in list
         int index = -1;
       
 
@@ -84,7 +107,7 @@ public class SimDriver {
             stations.moveToPos(index);
 
 
-
+        System.out.println(stations);
 
         index = -1;
 
@@ -95,33 +118,24 @@ public class SimDriver {
         	index = stations.currPos();
             // what station are we currently at? stove? grill?
         	CookingStation curr = stations.getValue();
-            // check if a station has no items
-            // currently kills all stations after  one run
-            //if (curr.getValue() == null) {
-              //  stations.remove();
-               // index = -1;
-               // break;
-           // }
+            
+
         	//check if all of the stations are empty
         	if (!stations.toString().contains(")")) {
         		break;
         	}
             
             // tend the current item in the current station
-            // ex: tend chicken on grill
-        	//CookingItem i = curr.tend(3, 1, numItems);
-            CookingItem i = curr.tend(1, 1);
+            CookingItem i = curr.tend(removeThreshold, penaltyThreshold);
 
             // increment total penalties
             // TODO: change variable name to totPenalty
-        	
             if (i != null) { // aka if item was removed
         		penalty += i.penalty();
                 numItems--;
         	}
 
         	//tick all stations
-
         	boolean exit = false;
         	stations.moveToStart();
         	while (!stations.isAtEnd()) {

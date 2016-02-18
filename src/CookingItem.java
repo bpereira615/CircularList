@@ -82,7 +82,7 @@ public class CookingItem implements CookingItemInterface {
             return remain * this.underdonePenalty;
         } else {
             return Math.abs(remain) * this.overdonePenalty;
-        }
+        } 
     }
     /**
      * Calculate the penalty if this dish were removed after the input time
@@ -98,7 +98,7 @@ public class CookingItem implements CookingItemInterface {
             return remain * this.underdonePenalty;
         } else {
             return Math.abs(remain) * this.overdonePenalty;
-        }
+        } 
     }
 
 

@@ -14,7 +14,6 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
     private String name;
 
 
-
     /**
      * Constructor for CookingStation.
      *
@@ -115,6 +114,8 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
      *            ie number of dishes in all stations 
      * @return the item if you decide to remove it, or null otherwise
      */
+
+    /*
     public CookingItem tend(int removeThreshold, int penaltyThreshold, int numItems) {
         //TODO: thresholds??
         // not sure how to select which threshold to use
@@ -155,6 +156,7 @@ public class CookingStation extends CList<CookingItem> implements CookingStation
             }
         }
     }
+    */
 
 
 
