@@ -12,65 +12,73 @@ import java.io.IOException;
  * @author Lydia Carroll
  */
 
-public class SimDriver {
+public final class SimDriver {
+
+    /** Private empty constructor for utility class */
+    private SimDriver() {}
+
 	public static void main(String[] args) throws IOException {
-	/** Circular list of stations in kitchen */
-	CList<CookingStation> stations = new CList<CookingStation>();
+
+    	/** Circular list of stations in kitchen */
+    	CList<CookingStation> stations = new CList<CookingStation>();
 
 
-	//Reading file, taken from ReadFile.java on class site
-	Scanner infile = null;
-    boolean inerror = false;
+    	//Reading file, taken from ReadFile.java on class site
+        /** Text file to be read in from */
+    	Scanner infile = null;
+        /** Error from reading in file */
+        boolean inerror = false;
 
-    //Writing file, specified by simulation
-    Scanner outfile = null;
+        /** Text file to be written out to */
+        Scanner outfile = null;
 
-    int numItems = 0; // total number of dishes being cooked
+        /** Total number of dishes to be cooked */
+        int numItems = 0; 
 
-    try {
-        System.out.println("0 " + args[0] + " should be input filename");
-        infile = new Scanner(new FileReader(args[0]));
-    } catch (ArrayIndexOutOfBoundsException a) {
-        System.err.println("must give input filename at command line");
-        inerror = true;
-    } catch (IOException f) {
-        System.err.println("can't open that file, try again");
-        inerror = true;
-    }
-    if (inerror) {
-        System.err.println("exiting...");
-        System.exit(1);
-    }
-      
-    Scanner inline;
-    String line;
-    String name, item;
-    int time, under, over;
-    while (infile.hasNext()) {
-        name = infile.nextLine();
-
-
-        CookingStation c = new CookingStation(name);
-            
-
-        line = infile.nextLine();
-        while (!line.equals("")) {
-            inline = new Scanner(line);
-            item = inline.next();
-            time = inline.nextInt();
-            under = inline.nextInt();
-            over = inline.nextInt();
-            
-            c.addItem(new CookingItem(item, time, under, over));
-            // count number of items going into kitchen
-            numItems++;
-            line = infile.nextLine();
+        try {
+            System.out.println("0 " + args[0] + " should be input filename");
+            infile = new Scanner(new FileReader(args[0]));
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.err.println("must give input filename at command line");
+            inerror = true;
+        } catch (IOException f) {
+            System.err.println("can't open that file, try again");
+            inerror = true;
         }
-        //System.out.println(name);
-        stations.append(c);
-    }
+        if (inerror) {
+            System.err.println("exiting...");
+            System.exit(1);
+        }
+        
+        Scanner inline;
+        String line;
+        String name, item;
+        int time, under, over;
+        while (infile.hasNext()) {
+            name = infile.nextLine();
 
 
+            CookingStation c = new CookingStation(name);
+                
+
+            line = infile.nextLine();
+            while (!line.equals("")) {
+                inline = new Scanner(line);
+                item = inline.next();
+                time = inline.nextInt();
+                under = inline.nextInt();
+                over = inline.nextInt();
+                
+                c.addItem(new CookingItem(item, time, under, over));
+                // count number of items going into kitchen
+                numItems++;
+                line = infile.nextLine();
+            }
+            stations.append(c);
+        }
+
+
+        //Choosing simulation to be run, comment all but one 
         //simulation(stations, 0, 0, numItems);
         //simulation(stations, 1, 0, numItems);
         //simulation(stations, 2, 0, numItems);
@@ -171,7 +179,6 @@ public class SimDriver {
         		
         	System.out.println(stations);
             o.println(stations);
-            //System.out.println("number of items: " + numItems);
         }
         
         // print the total penalties
