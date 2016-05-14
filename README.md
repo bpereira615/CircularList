@@ -13,7 +13,7 @@ You've been sabotaged! You are a contestant on Cutthroat Kitchen, and you have t
 
 To do this, you will need to be able to create multiple stations, each of which may have multiple dishes in process. For example, you might have a stove, an oven, and a grill, and each may have 3 items heating. Each item has to cook for a specific amount of time; if it's removed too early it's not fully cooked and the judges will penalize you; too long and it burns - that is even worse! But, you only get a certain amount of time to tend each station, so you can't watch everything!
 
-
+***
 
 	Benmin Hoertnagl-Pereira
 	bhoertn1
@@ -54,3 +54,5 @@ To do this, you will need to be able to create multiple stations, each of which 
 	NOTE:
     List, CookingItem, and CookingStation taken from course site
     CList.java adopted from DDList.java implementation on course site
+
+***
