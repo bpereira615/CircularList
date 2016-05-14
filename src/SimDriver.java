@@ -14,6 +14,7 @@ import java.io.IOException;
 
 public final class SimDriver {
 
+<<<<<<< HEAD
     /** Private empty constructor for utility class */
     private SimDriver() {}
 
@@ -26,6 +27,28 @@ public final class SimDriver {
     	//Reading file, taken from ReadFile.java on class site
         /** Text file to be read in from */
     	Scanner infile = null;
+=======
+    /** Private empty constructor for utility class. */
+    private SimDriver() {
+    }
+   
+    /**
+     * Main method for simulation- reads in from file and 
+     * runs simulation given respective thresholds.
+     *
+     * @param args the command line arguments
+     *
+     * @throws IOException from readion/writing files
+     */
+    public static void main(String[] args) throws IOException {
+        /** Circular list of stations in kitchen */
+        CList<CookingStation> stations = new CList<CookingStation>();
+
+
+        //Reading file, taken from ReadFile.java on class site
+        /** Text file to be read in from */
+        Scanner infile = null;
+>>>>>>> 8fc89760dcb890a966103021907404bc644a847e
         /** Error from reading in file */
         boolean inerror = false;
 
@@ -34,6 +57,31 @@ public final class SimDriver {
 
         /** Total number of dishes to be cooked */
         int numItems = 0; 
+<<<<<<< HEAD
+=======
+
+        try {
+            System.out.println("0 " + args[0] + " should be input filename");
+            infile = new Scanner(new FileReader(args[0]));
+        } catch (ArrayIndexOutOfBoundsException a) {
+            System.err.println("must give input filename at command line");
+            inerror = true;
+        } catch (IOException f) {
+            System.err.println("can't open that file, try again");
+            inerror = true;
+        }
+        if (inerror) {
+            System.err.println("exiting...");
+            System.exit(1);
+        }
+        
+        Scanner inline;
+        String line;
+        String name, item;
+        int time, under, over;
+        while (infile.hasNext()) {
+            name = infile.nextLine();
+>>>>>>> 8fc89760dcb890a966103021907404bc644a847e
 
         try {
             System.out.println("0 " + args[0] + " should be input filename");
@@ -57,10 +105,16 @@ public final class SimDriver {
         while (infile.hasNext()) {
             name = infile.nextLine();
 
+<<<<<<< HEAD
 
             CookingStation c = new CookingStation(name);
                 
 
+=======
+            CookingStation c = new CookingStation(name);
+                
+
+>>>>>>> 8fc89760dcb890a966103021907404bc644a847e
             line = infile.nextLine();
             while (!line.equals("")) {
                 inline = new Scanner(line);
@@ -76,7 +130,12 @@ public final class SimDriver {
             }
             stations.append(c);
         }
+<<<<<<< HEAD
 
+=======
+        
+        //******************************************************
+>>>>>>> 8fc89760dcb890a966103021907404bc644a847e
 
         //Choosing simulation to be run, comment all but one 
         //simulation(stations, 0, 0, numItems);
@@ -84,12 +143,24 @@ public final class SimDriver {
         //simulation(stations, 2, 0, numItems);
         simulation(stations, 1, 1, numItems);
 
+
+        //******************************************************
+
     }
 
 
-
+    /**
+     * Helper method for the simulation.
+     *
+     * @param stations the list of cooking stations
+     * @param removeThreshold used for tend, when to remove
+     * @param penaltyThreshold used for tend, when to remove
+     * @param numItems total number of items at all stations
+     *
+     * @throws IOException for reading/writing to files
+     */
     static void simulation(CList<CookingStation> stations, int removeThreshold, 
-        int penaltyThreshold, int numItems) throws IOException{
+        int penaltyThreshold, int numItems) throws IOException {
 
         //setting up output file
         String outfile = "sim" + removeThreshold + ".txt";
@@ -133,15 +204,15 @@ public final class SimDriver {
         while (stations.length() != 0) {
             
             // index = current position in stations, ie at stove
-        	index = stations.currPos();
+            index = stations.currPos();
             // what station are we currently at? stove? grill?
-        	CookingStation curr = stations.getValue();
+            CookingStation curr = stations.getValue();
             
 
-        	//check if all of the stations are empty
-        	if (!stations.toString().contains(")")) {
-        		break;
-        	}
+            //check if all of the stations are empty
+            if (!stations.toString().contains(")")) {
+                break;
+            }
             
             // tend the current item in the current station
             CookingItem i;
@@ -152,32 +223,31 @@ public final class SimDriver {
             }
 
             // increment total penalties
-            // TODO: change variable name to totPenalty
             if (i != null) { // aka if item was removed
-        		penalty += i.penalty();
+                penalty += i.penalty();
                 numItems--;
-        	}
+            }
 
-        	//tick all stations
-        	boolean exit = false;
-        	stations.moveToStart();
-        	while (!stations.isAtEnd()) {
+            //tick all stations
+            boolean exit = false;
+            stations.moveToStart();
+            while (!stations.isAtEnd()) {
 
-        		stations.getValue().tick();
-        		stations.next();
-        	}
-        	stations.getValue().tick();
+                stations.getValue().tick();
+                stations.next();
+            }
+            stations.getValue().tick();
 
-        	//bring back to original position
-        	stations.moveToPos(index);
+            //bring back to original position
+            stations.moveToPos(index);
 
-        	index = -1;
+            index = -1;
 
 
-        	
-        	stations.circularNext();
-        		
-        	System.out.println(stations);
+            
+            stations.circularNext();
+                
+            System.out.println(stations);
             o.println(stations);
         }
         
@@ -187,6 +257,6 @@ public final class SimDriver {
 
         o.close();
 
-	}
-	
+    }
+    
 }
